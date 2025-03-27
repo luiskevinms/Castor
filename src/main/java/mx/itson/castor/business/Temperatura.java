@@ -11,11 +11,15 @@ package mx.itson.castor.business;
 public class Temperatura {
     
     /**
-     * Este método sirve para convertir de grados centigrados a farenheit
-     * @param centigrados
-     * @return 
+     * Convertir grados centigrados a farenheit
+     * @param centigrados la cantidad de grados centigrados que planeamos convertir
+     * @return El valor convertido a grados farenheit 
      */
-    public double convertirGrados(double centigrados){
-        return centigrados * (9/5) + 32;
+    public static double convertirGrados(double centigrados){
+        return centigrados * 1.8 + 32;
+    }
+    
+    public static int calcularPerimetro (int lado){
+        return lado * 4;
     }
 }
