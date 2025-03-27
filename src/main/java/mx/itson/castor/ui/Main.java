@@ -4,6 +4,8 @@
  */
 package mx.itson.castor.ui;
 
+import mx.itson.castor.business.Temperatura;
+
 /**
  *
  * @author alumnog
@@ -29,7 +31,7 @@ public class Main extends javax.swing.JFrame {
         txtTemperatura = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
-        Resultado = new javax.swing.JLabel();
+        lblResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,8 +53,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        Resultado.setForeground(new java.awt.Color(0, 204, 0));
-        Resultado.setText("...");
+        lblResultado.setForeground(new java.awt.Color(0, 204, 0));
+        lblResultado.setText("...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,12 +62,11 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnAceptar)
-                        .addComponent(txtTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -78,7 +79,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(291, Short.MAX_VALUE))
         );
 
@@ -90,6 +91,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTemperaturaActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        try{
+        double centigrados = Double.parseDouble(txtTemperatura.getText()); 
+        double fahrenheit = Temperatura.convertirGrados(centigrados);
+        lblResultado.setText("Grados Fahrenheit: " + fahrenheit);
+        } catch(Exception ex) {
+            lblResultado.setText("Valor invalido");
+            System.err.println("No se pudo convertir el valor");
+        }
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -129,9 +138,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Resultado;
     private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblResultado;
     private javax.swing.JTextField txtTemperatura;
     // End of variables declaration//GEN-END:variables
 }
